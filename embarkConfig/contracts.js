@@ -116,6 +116,10 @@ module.exports = {
         file: "@aragon/os/contracts/acl/ACL.sol"
       }
     },
+    afterDeploy: async (deps) => {
+      await deps.contracts.LiquidPledging.methods.initialize(deps.contracts.LPVault.options.address).send({gas: 1000000});
+      await deps.contracts.LPVault.methods.initialize(deps.contracts.LiquidPledging.options.address).send({gas: 1000000});
+    }
 
     // afterDeploy: [
     //   `console.log('we deployed here')`,
