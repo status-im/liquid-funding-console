@@ -1,0 +1,57 @@
+{
+  "name": "liquid-funding-console",
+  "version": "1.0.0",
+  "description": "console app for the Liquid Pledging Smart Contract",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Giveth/liquidpledging.git"
+  },
+  "keywords": [
+    "liquid",
+    "pledging",
+    "tracking",
+    "smart",
+    "contract",
+    "solidity",
+    "donation"
+  ],
+  "contributors": [
+    {
+      "name": "Iuri Matias",
+      "email": "iuri.matias@gmail.com"
+    },
+    {
+      "name": "Richard Ramos",
+      "email": "info@richardramos.me"
+    }
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/status-im/liquid-funding-console"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "ganache-cli": "^6.1.3",
+    "mocha": "^3.5.0",
+    "web3": "1.0.0-beta.34"
+  },
+  "homepage": ".",
+  "dependencies": {
+    "@aragon/os": "3.1.9",
+    "embark": "^4.1.0-beta.0",
+    "embarkjs-connector-web3": "^4.0.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
