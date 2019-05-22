@@ -17,7 +17,12 @@ function doAction(actionText, action) {
       }
     ]).then(() => {
       console.dir("executing...");
-      action()
+      try {
+        action()
+      } catch (e) {
+        console.dir("== error")
+        console.dir(e)
+      }
     })
 }
 
@@ -26,14 +31,22 @@ class Actions {
   constructor() {
   }
 
-  connect() {
+  connect(cb) {
     web3.setProvider("ws://localhost:8556");
+
+    setTimeout(async () => {
+      let accounts = await web3.eth.getAccounts();
+      web3.eth.defaultAccount = accounts[0]
+      cb();
+    }, 1000);
   }
 
   addProject(params) {
-    let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({from: web3.eth.defaultAccount, gas: 2000000})`
+    let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({from: \"${web3.eth.defaultAccount}\", gas: 2000000})`
     doAction(text, async () => {
       let projectReceipt = await LiquidPledging.methods.addProject(params.name, params.url, params.account, params.parentProject, params.commitTime, params.plugin).send({from: web3.eth.defaultAccount, gas: 2000000});
+      console.dir("receipt:")
+      console.dir(projectReceipt)
       var projectId = projectReceipt.events.ProjectAdded.returnValues.idProject;
 
       console.log(projectId);
@@ -41,7 +54,7 @@ class Actions {
   }
 
   addGiver(params) {
-    let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({from: web3.eth.defaultAccount, gas: 2000000})`
+    let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({from: \"${web3.eth.defaultAccount}\", gas: 2000000})`
     doAction(text, async () => {
       let funderReceipt = await LiquidPledging.methods.addGiver(params.name, params.url, params.commitTime, params.plugin).send({from: web3.eth.defaultAccount, gas: 2000000})
       var funderId = funderReceipt.events.GiverAdded.returnValues.idGiver;

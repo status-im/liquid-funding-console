@@ -41,9 +41,7 @@ async function app(actions) {
 
 const actions = new Actions();
 
-actions.connect();
-
-setTimeout(async () => {
-  app(actions)
-}, 1000);
+actions.connect(async () => {
+	app(actions)
+});
 
