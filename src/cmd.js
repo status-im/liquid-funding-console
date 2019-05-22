@@ -25,6 +25,7 @@ async function app(actions) {
     subAction = (await menus.funders()).action
 
     if (subAction === 'List Funders') {
+      actions.listFunders();
     } if (subAction === 'Create Funder') {
       let params = (await menus.createProject())
       actions.addProject(params);

@@ -1,7 +1,7 @@
 var inquirer = require('inquirer');
 const Web3 = require("web3");
 const Table = require('cli-table');
-
+const PledgeAdminUtils = require('./pledgeadmin-utils');
 
 const Contracts = require("./contracts.js");
 
@@ -69,23 +69,10 @@ class Actions {
 
   async listProjects() {
     try {
-      let numProjects = await this.contracts.LiquidPledging.methods.numberOfPledgeAdmins().call();
-      
-      const table = new Table({
-        head: ['Id', 'Name', 'URL', 'ParentProject', 'Status', 'Commit Time', 'Owner', 'Plugin']
-      });
-
-      for(let i = 1; i <= numProjects; i++){
-        const pledgeAdmin = await this.contracts.LiquidPledging.methods.getPledgeAdmin(i).call();
-        if(pledgeAdmin.adminType !== '2') continue;
-
-        table.push(
-          [i, pledgeAdmin.name, pledgeAdmin.url, pledgeAdmin.parentProject, pledgeAdmin.canceled ? 'Canceled' : 'Active', pledgeAdmin.commitTime, pledgeAdmin.addr, pledgeAdmin.plugin]
-        );
-      }
-
-      console.log(table.toString());
+      const pledgeAdmins = await PledgeAdminUtils.getPledgeAdmins(this.contracts.LiquidPledging);
+      PledgeAdminUtils.printTable(pledgeAdmins.filter(x => x !== PledgeAdminUtils.constants.PROJECT));
     } catch(error){
+      console.log(error);
       console.log("Couldn't obtain the list of projects: ", error.message);
     }
   }
@@ -95,17 +82,21 @@ class Actions {
     doAction(text, async () => {
       try {
         const pledgeAdmin = await this.contracts.LiquidPledging.methods.getPledgeAdmin(params.id).call();
-        const table = new Table({
-          head: ['Id', 'Name', 'URL', 'ParentProject', 'Status', 'Commit Time', 'Owner', 'Plugin']
-        });
-        table.push(
-          [params.id, pledgeAdmin.name, pledgeAdmin.url, pledgeAdmin.parentProject, pledgeAdmin.canceled ? 'Canceled' : 'Active', pledgeAdmin.commitTime, pledgeAdmin.addr, pledgeAdmin.plugin]
-        ); 
-        console.log(table.toString());
+        PledgeAdminUtils.printTable([pledgeAdmin].filter(x => x !== PledgeAdminUtils.constants.PROJECT));
       } catch(error){
         console.log("Couldn't obtain the project: ", error.message);
       }
     });
+  }
+
+  async listFunders() {
+    try {
+      const pledgeAdmins = await PledgeAdminUtils.getPledgeAdmins(this.contracts.LiquidPledging);
+      PledgeAdminUtils.printTable(pledgeAdmins.filter(x => x !== PledgeAdminUtils.constants.FUNDER));
+    } catch(error){
+      console.log(error);
+      console.log("Couldn't obtain the list of funders: ", error.message);
+    }
   }
 
   addGiver(params) {
