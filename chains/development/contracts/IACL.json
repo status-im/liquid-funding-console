@@ -1,0 +1,71 @@
+{
+  "className": "IACL",
+  "args": [],
+  "code": "",
+  "runtimeBytecode": "",
+  "realRuntimeBytecode": "",
+  "linkReferences": {},
+  "swarmHash": "",
+  "gasEstimates": null,
+  "functionHashes": {
+    "hasPermission(address,address,bytes32,bytes)": "fdef9106",
+    "initialize(address)": "c4d66de8"
+  },
+  "abiDefinition": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "permissionsCreator",
+          "type": "address"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xc4d66de8"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "who",
+          "type": "address"
+        },
+        {
+          "name": "where",
+          "type": "address"
+        },
+        {
+          "name": "what",
+          "type": "bytes32"
+        },
+        {
+          "name": "how",
+          "type": "bytes"
+        }
+      ],
+      "name": "hasPermission",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0xfdef9106"
+    }
+  ],
+  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/IACL.sol",
+  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/IACL.sol",
+  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/acl/IACL.sol",
+  "gas": "auto",
+  "type": "file",
+  "deploy": false,
+  "_gasLimit": 6000000,
+  "error": false
+}

@@ -1,0 +1,91 @@
+{
+  "className": "VaultRecoverable",
+  "args": [],
+  "code": "",
+  "runtimeBytecode": "",
+  "realRuntimeBytecode": "",
+  "linkReferences": {},
+  "swarmHash": "",
+  "gasEstimates": null,
+  "functionHashes": {
+    "ETH()": "8322fff2",
+    "allowRecoverability(address)": "7e7db6e1",
+    "getRecoveryVault()": "32f0a3b5",
+    "transferToVault(address)": "9d4941d8"
+  },
+  "abiDefinition": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getRecoveryVault",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x32f0a3b5"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "allowRecoverability",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x7e7db6e1"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ETH",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x8322fff2"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "name": "transferToVault",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x9d4941d8"
+    }
+  ],
+  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/common/VaultRecoverable.sol",
+  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/common/VaultRecoverable.sol",
+  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/common/VaultRecoverable.sol",
+  "gas": "auto",
+  "type": "file",
+  "deploy": false,
+  "_gasLimit": 6000000,
+  "error": false
+}

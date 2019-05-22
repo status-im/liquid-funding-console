@@ -1,0 +1,38 @@
+{
+  "className": "DelegateScriptTarget",
+  "args": [],
+  "code": "",
+  "runtimeBytecode": "",
+  "realRuntimeBytecode": "",
+  "linkReferences": {},
+  "swarmHash": "",
+  "gasEstimates": null,
+  "functionHashes": {
+    "exec()": "c1c0e9c4"
+  },
+  "abiDefinition": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "exec",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xc1c0e9c4"
+    }
+  ],
+  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
+  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
+  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
+  "gas": "auto",
+  "type": "file",
+  "deploy": false,
+  "_gasLimit": 6000000,
+  "error": false
+}

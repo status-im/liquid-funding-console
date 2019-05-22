@@ -1,0 +1,55 @@
+{
+  "className": "ACLOracle",
+  "args": [],
+  "code": "",
+  "runtimeBytecode": "",
+  "realRuntimeBytecode": "",
+  "linkReferences": {},
+  "swarmHash": "",
+  "gasEstimates": null,
+  "functionHashes": {
+    "canPerform(address,address,bytes32,uint256[])": "2a151090"
+  },
+  "abiDefinition": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "who",
+          "type": "address"
+        },
+        {
+          "name": "where",
+          "type": "address"
+        },
+        {
+          "name": "what",
+          "type": "bytes32"
+        },
+        {
+          "name": "how",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "canPerform",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "signature": "0x2a151090"
+    }
+  ],
+  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACL.sol",
+  "originalFilename": "node_modules/@aragon/os/contracts/acl/ACL.sol",
+  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/node_modules/@aragon/os/contracts/acl/ACL.sol",
+  "gas": "auto",
+  "type": "file",
+  "deploy": false,
+  "_gasLimit": 6000000,
+  "error": false
+}
