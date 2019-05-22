@@ -33,7 +33,6 @@ class Actions {
   }
 
   connect(url, cb) {
-		console.dir("chain: " + url);
 		console.dir("connecting to: " + url);
     web3.setProvider(url);
 

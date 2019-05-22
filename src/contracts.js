@@ -8,11 +8,12 @@ class Contracts {
   }
 
   loadContracts() {
-    const LiquidPledgingJSONConfig = require("../dist/contracts/LiquidPledging.json");
+    console.dir("loading contracts for " + this.chain);
+    const LiquidPledgingJSONConfig = require(`../chains/${this.chain}/contracts/LiquidPledging.json`);
     const LiquidPledging = new this.web3.eth.Contract(LiquidPledgingJSONConfig.abiDefinition, LiquidPledgingJSONConfig.address);
     this.contracts.LiquidPledging = LiquidPledging;
 
-    const StandardTokenJSONConfig = require("../dist/contracts/StandardToken.json");
+    const StandardTokenJSONConfig = require(`../chains/${this.chain}/contracts/StandardToken.json`);
     const StandardToken = new this.web3.eth.Contract(StandardTokenJSONConfig.abiDefinition, StandardTokenJSONConfig.address);
     this.contracts.StandardToken = StandardToken;
   }
