@@ -15,7 +15,8 @@ function doAction(actionText, action) {
         name: 'action',
         message: 'Execute?',
       }
-    ]).then(() => {
+    ]).then((answer) => {
+      if (answer.action === false) return;
       console.dir("executing...");
       try {
         action()
@@ -84,6 +85,14 @@ class Actions {
     doAction(text, async () => {
       let mintReceipt = await StandardToken.methods.approve(LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
       console.dir("txHash: " + mintReceipt.transactionHash)
+    });
+  }
+
+  donate(params) {
+    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
+    doAction(text, async () => {
+			let donateReceipt = await LiquidPledging.methods.donate(params.funderId, params.projectId, LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000});
+      console.dir("txHash: " + donateReceipt.transactionHash)
     });
   }
 
