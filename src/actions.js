@@ -1,13 +1,9 @@
 var inquirer = require('inquirer');
 const Web3 = require("web3");
 
+const Contracts = require("./contracts.js");
+
 const web3 = new Web3();
-
-const LiquidPledgingJSONConfig = require("../dist/contracts/LiquidPledging.json");
-let LiquidPledging;
-
-const StandardTokenJSONConfig = require("../dist/contracts/StandardToken.json");
-let StandardToken;
 
 function doAction(actionText, action) {
   console.dir(actionText)
@@ -32,11 +28,14 @@ function doAction(actionText, action) {
 
 class Actions {
 
-  constructor() {
+  constructor(chain) {
+	  this.chain = chain || "development";
   }
 
-  connect(cb) {
-    web3.setProvider("ws://localhost:8556");
+  connect(url, cb) {
+		console.dir("chain: " + url);
+		console.dir("connecting to: " + url);
+    web3.setProvider(url);
 
     setTimeout(async () => {
       let accounts = await web3.eth.getAccounts();
@@ -44,8 +43,9 @@ class Actions {
       console.dir(accounts);
       web3.eth.defaultAccount = accounts[0]
 
-      LiquidPledging = new web3.eth.Contract(LiquidPledgingJSONConfig.abiDefinition, LiquidPledgingJSONConfig.address);
-      StandardToken = new web3.eth.Contract(StandardTokenJSONConfig.abiDefinition, StandardTokenJSONConfig.address);
+      let contracts = new Contracts(this.chain, web3);
+			contracts.loadContracts();
+			this.contracts = contracts.contracts;
 
       cb();
     }, 1000);
@@ -58,7 +58,7 @@ class Actions {
   addProject(params) {
     let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({from: \"${web3.eth.defaultAccount}\", gas: 2000000})`
     doAction(text, async () => {
-      let projectReceipt = await LiquidPledging.methods.addProject(params.name, params.url, params.account, params.parentProject, params.commitTime, params.plugin).send({from: web3.eth.defaultAccount, gas: 2000000});
+      let projectReceipt = await this.contracts.LiquidPledging.methods.addProject(params.name, params.url, params.account, params.parentProject, params.commitTime, params.plugin).send({from: web3.eth.defaultAccount, gas: 2000000});
       console.dir("txHash: " + projectReceipt.transactionHash)
       var projectId = projectReceipt.events.ProjectAdded.returnValues.idProject;
 
@@ -69,7 +69,7 @@ class Actions {
   addGiver(params) {
     let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({from: \"${web3.eth.defaultAccount}\", gas: 2000000})`
     doAction(text, async () => {
-      let funderReceipt = await LiquidPledging.methods.addGiver(params.name, params.url, params.commitTime, params.plugin).send({from: web3.eth.defaultAccount, gas: 2000000})
+      let funderReceipt = await this.contracts.LiquidPledging.methods.addGiver(params.name, params.url, params.commitTime, params.plugin).send({from: web3.eth.defaultAccount, gas: 2000000})
       console.dir("txHash: " + funderReceipt.transactionHash)
       var funderId = funderReceipt.events.GiverAdded.returnValues.idGiver;
       console.log(funderId);
@@ -79,23 +79,23 @@ class Actions {
   mintToken(params) {
     let text = `await StandardToken.methods.mint(\"${params.account}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
     doAction(text, async () => {
-      let mintReceipt = await StandardToken.methods.mint(params.account, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
+      let mintReceipt = await this.contracts.StandardToken.methods.mint(params.account, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
       console.dir("txHash: " + mintReceipt.transactionHash)
     });
   }
 
   approveToken(params) {
-    let text = `await StandardToken.methods.approve(\"${LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
+    let text = `await StandardToken.methods.approve(\"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
     doAction(text, async () => {
-      let mintReceipt = await StandardToken.methods.approve(LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
+      let mintReceipt = await this.contracts.StandardToken.methods.approve(this.contracts.LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
       console.dir("txHash: " + mintReceipt.transactionHash)
     });
   }
 
   donate(params) {
-    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
+    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
     doAction(text, async () => {
-      let donateReceipt = await LiquidPledging.methods.donate(params.funderId, params.projectId, LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000});
+      let donateReceipt = await this.contracts.LiquidPledging.methods.donate(params.funderId, params.projectId, this.contracts.LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000});
       console.dir("txHash: " + donateReceipt.transactionHash)
     });
   }
