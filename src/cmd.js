@@ -12,7 +12,7 @@ async function app(actions) {
 
     if (subAction === 'List Projects') {
     } if (subAction === 'Create Project') {
-      let params = (await menus.createProject("0x0000000000000000000000000000000000000001"))
+      let params = (await menus.createProject(actions.web3().eth.defaultAccount))
 			actions.addProject(params);
     } if (subAction === 'view Project') {
     }
@@ -31,6 +31,8 @@ async function app(actions) {
       let params = (await menus.mintToken())
 			action.mintToken(params);
     } if (subAction === 'Aprove') {
+      let params = (await menus.approveToken())
+			action.approveToken(params);
     }
   } else if (action === 'Exit') {
     process.exit()

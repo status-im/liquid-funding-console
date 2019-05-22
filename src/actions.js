@@ -46,6 +46,9 @@ class Actions {
     }, 1000);
   }
 
+  web3() {
+    return web3;
+  }
 
   addProject(params) {
     let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({from: \"${web3.eth.defaultAccount}\", gas: 2000000})`
@@ -72,6 +75,14 @@ class Actions {
     let text = `await StandardToken.methods.mint(\"${params.account}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
     doAction(text, async () => {
       let mintReceipt = await StandardToken.methods.mint(params.account, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
+      console.dir("txHash: " + mintReceipt.transactionHash)
+    });
+  }
+
+  approveToken(params) {
+    let text = `await StandardToken.methods.approve(\"${LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
+    doAction(text, async () => {
+      let mintReceipt = await StandardToken.methods.approve(LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000})
       console.dir("txHash: " + mintReceipt.transactionHash)
     });
   }

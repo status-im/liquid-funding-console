@@ -212,6 +212,27 @@ const menus = {
         filter: Number
       }
     ])
+  },
+
+  approveToken: async function(lpAddress) {
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'tokenAddress',
+        message: 'What is the token address?',
+        filter: String,
+        validate: function(value) {
+          return value.indexOf("0x") === 0;
+        }
+      },
+      {
+        type: 'input',
+        name: 'amount',
+        message: 'amount (in ether units)',
+        default: 2,
+        filter: Number
+      }
+    ])
   }
 
 }
