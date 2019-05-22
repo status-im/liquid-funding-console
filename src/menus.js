@@ -245,21 +245,21 @@ const menus = {
         message: 'What is the funder Id?',
         filter: Number
       },
-			{
-				type: 'input',
-				name: 'projectId',
-				message: 'What is the projectId?',
-				filter: Number
-			},
-			{
-				type: 'input',
-				name: 'tokenAddress',
-				message: 'What is the token address?',
-				filter: String,
-				validate: function(value) {
-					return value.indexOf("0x") === 0;
-				}
-			},
+      {
+        type: 'input',
+        name: 'projectId',
+        message: 'What is the projectId?',
+        filter: Number
+      },
+      {
+        type: 'input',
+        name: 'tokenAddress',
+        message: 'What is the token address?',
+        filter: String,
+        validate: function(value) {
+          return value.indexOf("0x") === 0;
+        }
+      },
       {
         type: 'input',
         name: 'amount',

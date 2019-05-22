@@ -95,7 +95,7 @@ class Actions {
   donate(params) {
     let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
     doAction(text, async () => {
-			let donateReceipt = await LiquidPledging.methods.donate(params.funderId, params.projectId, LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000});
+      let donateReceipt = await LiquidPledging.methods.donate(params.funderId, params.projectId, LiquidPledging.options.address, web3.utils.toWei(params.amount, "ether")).send({gas: 2000000});
       console.dir("txHash: " + donateReceipt.transactionHash)
     });
   }
