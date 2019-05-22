@@ -32,6 +32,7 @@ const menus = {
             'List Projects',
             'Create Project',
             'View Project',
+            'Donate to Project',
             // new inquirer.Separator(),
             // 'Back',
             // new inquirer.Separator(),
@@ -216,6 +217,40 @@ const menus = {
 
   approveToken: async function(lpAddress) {
     return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'tokenAddress',
+        message: 'What is the token address?',
+        filter: String,
+        validate: function(value) {
+          return value.indexOf("0x") === 0;
+        }
+      },
+      {
+        type: 'input',
+        name: 'amount',
+        message: 'amount (in ether units)',
+        default: 2,
+        filter: Number
+      }
+    ])
+  },
+
+  donate: async function(lpAddress) {
+    console.dir("note: don't forget to approve the token to be withdrawn by the LF address");
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'funderId',
+        message: 'What is the funder Id?',
+        filter: Number
+      },
+      {
+        type: 'input',
+        name: 'projectId',
+        message: 'What is the projectId?',
+        filter: Number
+      },
       {
         type: 'input',
         name: 'tokenAddress',

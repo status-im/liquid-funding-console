@@ -13,8 +13,11 @@ async function app(actions) {
     if (subAction === 'List Projects') {
     } if (subAction === 'Create Project') {
       let params = (await menus.createProject(actions.web3().eth.defaultAccount))
-			actions.addProject(params);
+      actions.addProject(params);
     } if (subAction === 'view Project') {
+    } if (subAction === 'Donate to Project') {
+      let params = (await menus.donate())
+      actions.donate(params);
     }
   } else if (action === 'Funders') {
     subAction = (await menus.funders()).action
@@ -22,17 +25,17 @@ async function app(actions) {
     if (subAction === 'List Funders') {
     } if (subAction === 'Create Funder') {
       let params = (await menus.createProject())
-			actions.addProject(params);
+      actions.addProject(params);
     }
   } else if (action === 'Tokens') {
     subAction = (await menus.tokens()).action
 
     if (subAction === 'Mint') {
       let params = (await menus.mintToken())
-			action.mintToken(params);
+      action.mintToken(params);
     } if (subAction === 'Aprove') {
       let params = (await menus.approveToken())
-			action.approveToken(params);
+      action.approveToken(params);
     }
   } else if (action === 'Exit') {
     process.exit()
@@ -44,6 +47,6 @@ async function app(actions) {
 const actions = new Actions();
 
 actions.connect(async () => {
-	app(actions)
+  app(actions)
 });
 
