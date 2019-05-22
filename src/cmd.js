@@ -15,6 +15,8 @@ async function app(actions) {
       let params = (await menus.createProject(actions.web3().eth.defaultAccount))
       actions.addProject(params);
     } if (subAction === 'View Project') {
+      let params = (await menus.viewProject())
+      actions.viewProject(params);
     } if (subAction === 'Donate to Project') {
       let params = (await menus.donate())
       actions.donate(params);

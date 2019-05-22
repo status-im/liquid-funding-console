@@ -150,6 +150,17 @@ const menus = {
       }
     ])
   },
+  viewProject: async function() {
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'id',
+        message: 'What is the project ID?',
+        filter: Number,
+        default: 0
+      }
+    ])
+  },
 
   createFunder: async function() {
     return inquirer.prompt([
