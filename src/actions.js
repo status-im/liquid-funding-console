@@ -68,22 +68,26 @@ class Actions {
   }
 
   async listProjects() {
-    let numProjects = await LiquidPledging.methods.numberOfPledgeAdmins().call();
-    
-    const table = new Table({
-      head: ['Id', 'Name', 'URL', 'ParentProject', 'Status', 'Commit Time', 'Owner', 'Plugin']
-    });
+    try {
+      let numProjects = await this.contracts.LiquidPledging.methods.numberOfPledgeAdmins().call();
+      
+      const table = new Table({
+        head: ['Id', 'Name', 'URL', 'ParentProject', 'Status', 'Commit Time', 'Owner', 'Plugin']
+      });
 
-    for(let i = 1; i <= numProjects; i++){
-      const pledge = await LiquidPledging.methods.getPledgeAdmin(i).call();
-      if(pledge.adminType !== '2') continue;
+      for(let i = 1; i <= numProjects; i++){
+        const pledge = await this.contracts.LiquidPledging.methods.getPledgeAdmin(i).call();
+        if(pledge.adminType !== '2') continue;
 
-      table.push(
-        [i, pledge.name, pledge.url, pledge.parentProject, pledge.canceled ? 'Canceled' : 'Active', pledge.commitTime, pledge.addr, pledge.plugin]
-      );
+        table.push(
+          [i, pledge.name, pledge.url, pledge.parentProject, pledge.canceled ? 'Canceled' : 'Active', pledge.commitTime, pledge.addr, pledge.plugin]
+        );
+      }
+
+      console.log(table.toString());
+    } catch(error){
+      console.log("Couldn't obtain the list of projects: ", error.message);
     }
-
-    console.log(table.toString());
   }
 
   addGiver(params) {
