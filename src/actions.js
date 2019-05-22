@@ -6,6 +6,9 @@ const web3 = new Web3();
 const LiquidPledgingJSONConfig = require("../dist/contracts/LiquidPledging.json");
 let LiquidPledging;
 
+const StandardTokenJSONConfig = require("../dist/contracts/StandardToken.json");
+let StandardToken;
+
 function doAction(actionText, action) {
   console.dir(actionText)
   const confirmation = inquirer
@@ -42,6 +45,7 @@ class Actions {
       web3.eth.defaultAccount = accounts[0]
 
       LiquidPledging = new web3.eth.Contract(LiquidPledgingJSONConfig.abiDefinition, LiquidPledgingJSONConfig.address);
+      StandardToken = new web3.eth.Contract(StandardTokenJSONConfig.abiDefinition, StandardTokenJSONConfig.address);
 
       cb();
     }, 1000);
