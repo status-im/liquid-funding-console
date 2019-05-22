@@ -1,5 +1,7 @@
 var inquirer = require('inquirer');
 const Web3 = require("web3");
+const Table = require('cli-table');
+
 
 const Contracts = require("./contracts.js");
 
@@ -63,6 +65,25 @@ class Actions {
 
       console.log(projectId);
     });
+  }
+
+  async listProjects() {
+    let numProjects = await LiquidPledging.methods.numberOfPledgeAdmins().call();
+    
+    const table = new Table({
+      head: ['Id', 'Name', 'URL', 'ParentProject', 'Status', 'Commit Time', 'Owner', 'Plugin']
+    });
+
+    for(let i = 1; i <= numProjects; i++){
+      const pledge = await LiquidPledging.methods.getPledgeAdmin(i).call();
+      if(pledge.adminType !== '2') continue;
+
+      table.push(
+        [i, pledge.name, pledge.url, pledge.parentProject, pledge.canceled ? 'Canceled' : 'Active', pledge.commitTime, pledge.addr, pledge.plugin]
+      );
+    }
+
+    console.log(table.toString());
   }
 
   addGiver(params) {
