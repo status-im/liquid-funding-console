@@ -1,0 +1,51 @@
+{
+  "className": "IEVMScriptExecutor",
+  "args": [],
+  "code": "",
+  "runtimeBytecode": "",
+  "realRuntimeBytecode": "",
+  "linkReferences": {},
+  "swarmHash": "",
+  "gasEstimates": null,
+  "functionHashes": {
+    "execScript(bytes,bytes,address[])": "279cea35"
+  },
+  "abiDefinition": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "script",
+          "type": "bytes"
+        },
+        {
+          "name": "input",
+          "type": "bytes"
+        },
+        {
+          "name": "blacklist",
+          "type": "address[]"
+        }
+      ],
+      "name": "execScript",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x279cea35"
+    }
+  ],
+  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/IEVMScriptExecutor.sol",
+  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/IEVMScriptExecutor.sol",
+  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/evmscript/IEVMScriptExecutor.sol",
+  "gas": "auto",
+  "type": "file",
+  "deploy": false,
+  "_gasLimit": 6000000,
+  "error": false
+}

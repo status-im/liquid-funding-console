@@ -1,6 +1,6 @@
 {
   "contracts": ["contracts/**"],
-  "buildDir": "dist/",
+  "buildDir": "chains/development/",
   "config": {
     "contracts": "embarkConfig/contracts.js",
     "blockchain": "embarkConfig/blockchain.js",

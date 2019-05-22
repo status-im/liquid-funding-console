@@ -1,6 +1,5 @@
 var inquirer = require('inquirer');
 const menus = require('./menus.js');
-const Actions = require('./actions.js');
 
 async function app(actions) {
   console.dir("### Liquid Funding Console")
@@ -44,9 +43,4 @@ async function app(actions) {
   }
 }
 
-const actions = new Actions();
-
-actions.connect(async () => {
-  app(actions)
-});
-
+module.exports = app;
