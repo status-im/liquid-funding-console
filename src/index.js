@@ -7,7 +7,6 @@ program
   .option('-u, --url [url]', "host to connect to (default: ws://localhost:8556)")
   .option('-a, --accounts [accounts]', "accounts file, if not defined uses accounts in the connecting node")
   .option('-c, --chain [chain]', "environment to run, can be mainnet, ropsten, development (default: development)")
-  .option('-i, --infura [infuraKey]', "infuraKey (default: undefined)")
   .parse(process.argv);
 
 let accounts = [];
@@ -18,8 +17,7 @@ if (program.accounts) {
 const actions = new Actions(program.chain || "development", accounts || []);
 
 actions.connect({
-  url: (program.url || "ws://localhost:8556"),
-  infura: program.infura
+  url: (program.url || "ws://localhost:8556")
 }, async () => {
   cmd(actions)
 });

@@ -40,7 +40,6 @@ class Actions {
 
   connect(options, cb) {
     const url = options.url;
-    const infura = options.infura;
 
     console.dir("connecting to: " + url);
 
