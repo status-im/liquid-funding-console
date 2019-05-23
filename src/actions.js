@@ -4,6 +4,7 @@ const PledgeUtils = require('./pledge-utils');
 const TrxUtils = require('./trx-utils');
 const Contracts = require("./contracts.js");
 const Provider = require("./provider.js");
+const Web3 = require('web3');
 
 function doAction(actionText, action) {
   console.dir(actionText)
@@ -32,22 +33,30 @@ function doAction(actionText, action) {
 
 class Actions {
 
-  constructor(chain) {
+  constructor(chain, accounts) {
     this.chain = chain || "development";
+    this.accounts = accounts || [];
   }
 
-  connect(url, cb) {
+  connect(options, cb) {
+    const url = options.url;
+    const infura = options.infura;
+
     console.dir("connecting to: " + url);
 
-    this.provider = new Provider();
-    const accounts = [{mnemonic: ""}]
-    this.provider.initAccounts(accounts);
-    this.provider.startWeb3Provider("ws", url)
-
-    //web3.setProvider(url);
+    if (this.accounts.length > 0) {
+      this.provider = new Provider();
+      this.provider.initAccounts(this.accounts);
+      this.provider.startWeb3Provider("ws", url)
+    } else {
+      this.web3 = new Web3();
+      this.web3.setProvider(url);
+    }
 
     setTimeout(async () => {
-      this.web3 = this.provider.web3;
+      if (this.accounts.length > 0) {
+        this.web3 = this.provider.web3;
+      }
 
       let accounts = await this.web3.eth.getAccounts();
       console.dir("== accounts");
