@@ -33,8 +33,8 @@ const menus = {
             'Create Project',
             'View Project',
             'Donate to Project',
-            // new inquirer.Separator(),
-            // 'Back',
+            new inquirer.Separator(),
+            'Back',
             // new inquirer.Separator(),
             // 'Exit'
           ]
@@ -52,8 +52,8 @@ const menus = {
           choices: [
             'List Funders',
             'Create Funder',
-            // new inquirer.Separator(),
-            // 'Back',
+            new inquirer.Separator(),
+            'Back',
             // new inquirer.Separator(),
             // 'Exit'
           ]
@@ -71,8 +71,8 @@ const menus = {
           choices: [
             'Mint',
             'Approve',
-            // new inquirer.Separator(),
-            // 'Back',
+            new inquirer.Separator(),
+            'Back',
             // new inquirer.Separator(),
             // 'Exit'
           ]
@@ -89,8 +89,8 @@ const menus = {
           message: 'Project> ' + id,
           choices: [
             'Donate/Pledge',
-            // new inquirer.Separator(),
-            // 'Back',
+            new inquirer.Separator(),
+            'Back',
             // new inquirer.Separator(),
             // 'Exit'
           ]
