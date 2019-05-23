@@ -10,9 +10,9 @@ const executeAndWait = async (toSend, account) => {
     const receipt = await toSend.send({from: account, gas: estimatedGas + 10000});
 
     spinner.stop(true);
-    return receipt; 
+    return receipt;
   } catch(error) {
-    console.log("Error minting tokens: ", error.message);
+    console.log("Error: ", error.message);
     spinner.stop(true);
   }
 }

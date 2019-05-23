@@ -11,18 +11,18 @@ function mainMenu(actions) {
 
       if (subAction === 'List Projects') {
         await actions.listProjects();
-      } 
-      
+      }
+
       if (subAction === 'Create Project') {
-        let params = (await menus.createProject(actions.web3().eth.defaultAccount))
+        let params = (await menus.createProject(actions.web3Object().eth.defaultAccount))
         await actions.addProject(params);
-      } 
-      
+      }
+
       if (subAction === 'View Project') {
         let params = (await menus.viewProject())
         await actions.viewProject(params);
-      } 
-      
+      }
+
       if (subAction === 'Fund a Project') {
         let params = (await menus.donate())
         await actions.donate(params);
@@ -37,7 +37,7 @@ function mainMenu(actions) {
       if (subAction === 'Withdraw') {
         let params = (await menus.withdraw())
         await actions.withdraw(params);
-      } 
+      }
     } else if (action === 'Funders') {
       subAction = (await menus.funders()).action
 
