@@ -7,7 +7,7 @@ const Provider = require("./provider.js");
 const Web3 = require('web3');
 
 function doAction(actionText, action) {
-  console.dir(actionText)
+  console.log(actionText)
   return new Promise(async(resolve, reject) => {
     inquirer
       .prompt([
@@ -112,13 +112,21 @@ class Actions {
   }
 
   async withdraw(params) {
-    let text = `await LiquidPledging.methods.withdraw(\"${params.id}\", web3.utils.toWei(\"${params.amount}\", "ether")).send({gas: 2000000})`;
+    let text = `await LiquidPledging.methods.withdraw(\"${params.id}\", web3.utils.toWei(\"${params.amount}\", "ether")).send({gas: 2000000});\nawait LPVault.methods.confirmPayment(paymentId).send({gas: 2000000})`;
     return doAction(text, async () => {
-      const toSend = this.contracts.LiquidPledging.methods.withdraw(params.id.toString(), this.web3.utils.toWei(params.amount.toString(), "ether"));
-      const receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount);
+
+      let toSend, receipt;
+
+      toSend = this.contracts.LiquidPledging.methods.withdraw(params.id.toString(), this.web3.utils.toWei(params.amount.toString(), "ether"));
+      receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount);
+
       console.dir("txHash: " + receipt.transactionHash);
       const paymentId = receipt.events.AuthorizePayment.returnValues.idPayment;
       console.log("Payment ID: " , paymentId);
+
+      toSend = this.contracts.LPVault.methods.confirmPayment(paymentId);
+      receipt = await TrxUtils.executeAndWait(toSend, web3.eth.defaultAccount);
+      console.dir("txHash: " + receipt.transactionHash);
     });
   }
 
