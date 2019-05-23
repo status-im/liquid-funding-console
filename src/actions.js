@@ -16,15 +16,16 @@ function doAction(actionText, action) {
           name: 'action',
           message: 'Execute?',
         }
-      ]).then((answer) => {
+      ]).then(async (answer) => {
         if (answer.action === false) return resolve();
         console.dir("executing...");
         try {
-          action()
+          await action()
         } catch (e) {
           console.dir("== error")
           console.dir(e)
         }
+        console.log("\n");
         resolve()
       })
   });
