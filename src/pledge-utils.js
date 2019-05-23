@@ -30,11 +30,11 @@ const PledgeState = {
 
 const printTable = (pledges, web3) => {
   const table = new Table({
-    head: ['Id', 'Owner', 'Token', 'Amount', 'nDelegates', 'IntededProject (?)', 'Commit Time (?)',  'Old Pledge Id', 'Pledge State']
+    head: ['Id', 'Owner', 'Token', 'Amount', 'nDelegates', 'IntededProject (?)', 'Commit Time',  'Old Pledge Id', 'Pledge State']
   });
   for(let i =  pledges.length - 1; i >= 0; i--){
     table.push(
-      [pledges[i].id, `${pledges[i].owner} (${pledges[i].ownerData.name})`, pledges[i].token, web3.utils.fromWei(pledges[i].amount, "ether"), pledges[i].nDelegates, pledges[i].intendedProject, pledges[i].commitTime, pledges[i].oldPledge, PledgeState[pledges[i].pledgeState]]
+      [pledges[i].id, `${pledges[i].owner} (${pledges[i].ownerData.name}, ${pledges[i].ownerData.commitTime})`, pledges[i].token, web3.utils.fromWei(pledges[i].amount, "ether"), pledges[i].nDelegates, pledges[i].intendedProject,`${pledges[i].commitTime}`, pledges[i].oldPledge, PledgeState[pledges[i].pledgeState]]
     );
   }
   console.log(table.toString());
