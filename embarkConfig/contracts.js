@@ -103,22 +103,12 @@ module.exports = {
       LiquidPledging: {
         instanceOf: 'LiquidPledgingMock'
       },
-      RecoveryVault: {},
-      LPFactory: {
-        args: ['$LPVault', '$LiquidPledging'],
-      },
       // contracts for testing
-      StandardToken: {},
-      Kernel: {
-        file: "@aragon/os/contracts/kernel/Kernel.sol"
-      },
-      ACL: {
-        file: "@aragon/os/contracts/acl/ACL.sol"
-      }
+      StandardToken: {}
     },
     afterDeploy: async (deps) => {
-      await deps.contracts.LiquidPledging.methods.initialize(deps.contracts.LPVault.options.address).send({gas: 1000000});
-      await deps.contracts.LPVault.methods.initialize(deps.contracts.LiquidPledging.options.address).send({gas: 1000000});
+      await deps.contracts.LiquidPledging.methods.initialize(deps.contracts.LPVault.options.address).send({gas: 1000000, from: deps.web3.eth.defaultAccount});
+      await deps.contracts.LPVault.methods.initialize(deps.contracts.LiquidPledging.options.address).send({gas: 1000000, from: deps.web3.eth.defaultAccount});
     }
 
     // afterDeploy: [
