@@ -76,11 +76,11 @@ class Actions {
       });
 
       for(let i = 1; i <= numProjects; i++){
-        const pledge = await this.contracts.LiquidPledging.methods.getPledgeAdmin(i).call();
-        if(pledge.adminType !== '2') continue;
+        const pledgeAdmin = await this.contracts.LiquidPledging.methods.getPledgeAdmin(i).call();
+        if(pledgeAdmin.adminType !== '2') continue;
 
         table.push(
-          [i, pledge.name, pledge.url, pledge.parentProject, pledge.canceled ? 'Canceled' : 'Active', pledge.commitTime, pledge.addr, pledge.plugin]
+          [i, pledgeAdmin.name, pledgeAdmin.url, pledgeAdmin.parentProject, pledgeAdmin.canceled ? 'Canceled' : 'Active', pledgeAdmin.commitTime, pledgeAdmin.addr, pledgeAdmin.plugin]
         );
       }
 
@@ -88,6 +88,24 @@ class Actions {
     } catch(error){
       console.log("Couldn't obtain the list of projects: ", error.message);
     }
+  }
+
+  viewProject(params) {
+    let text = `await LiquidPledging.methods.getPledgeAdmin(\"${params.id}\").call()`
+    doAction(text, async () => {
+      try {
+        const pledgeAdmin = await this.contracts.LiquidPledging.methods.getPledgeAdmin(params.id).call();
+        const table = new Table({
+          head: ['Id', 'Name', 'URL', 'ParentProject', 'Status', 'Commit Time', 'Owner', 'Plugin']
+        });
+        table.push(
+          [params.id, pledgeAdmin.name, pledgeAdmin.url, pledgeAdmin.parentProject, pledgeAdmin.canceled ? 'Canceled' : 'Active', pledgeAdmin.commitTime, pledgeAdmin.addr, pledgeAdmin.plugin]
+        ); 
+        console.log(table.toString());
+      } catch(error){
+        console.log("Couldn't obtain the project: ", error.message);
+      }
+    });
   }
 
   addGiver(params) {
