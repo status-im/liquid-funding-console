@@ -11,15 +11,27 @@ function mainMenu(actions) {
 
       if (subAction === 'List Projects') {
         await actions.listProjects();
-      } if (subAction === 'Create Project') {
+      } 
+      
+      if (subAction === 'Create Project') {
         let params = (await menus.createProject(actions.web3().eth.defaultAccount))
         await actions.addProject(params);
-      } if (subAction === 'View Project') {
+      } 
+      
+      if (subAction === 'View Project') {
         let params = (await menus.viewProject())
         await actions.viewProject(params);
-      } if (subAction === 'Donate to Project') {
+      } 
+      
+      if (subAction === 'Fund a Project') {
         let params = (await menus.donate())
         await actions.donate(params);
+      }
+    } else if(action === 'Pledges') {
+      subAction = (await menus.pledges()).action
+
+      if (subAction === 'View Pledges') {
+        await actions.viewPledges();
       }
     } else if (action === 'Funders') {
       subAction = (await menus.funders()).action

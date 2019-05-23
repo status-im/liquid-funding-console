@@ -9,7 +9,7 @@ const printTable = (pledgeAdmins) => {
 
   for(let i = 0; i < pledgeAdmins.length; i++){
     table.push(
-      [i, pledgeAdmins[i].name, pledgeAdmins[i].url, pledgeAdmins[i].parentProject, pledgeAdmins[i].canceled ? 'Canceled' : 'Active', pledgeAdmins[i].commitTime, pledgeAdmins[i].addr, pledgeAdmins[i].plugin]
+      [pledgeAdmins[i].id, pledgeAdmins[i].name, pledgeAdmins[i].url, pledgeAdmins[i].parentProject, pledgeAdmins[i].canceled ? 'Canceled' : 'Active', pledgeAdmins[i].commitTime, pledgeAdmins[i].addr, pledgeAdmins[i].plugin]
     );
   }
 
@@ -23,7 +23,11 @@ const getPledgeAdmins = async (LiquidPledging) => {
   for(let i = 1; i <= numProjects; i++){
     pledgeAdmins.push(LiquidPledging.methods.getPledgeAdmin(i).call());
   }
-  return Promise.all(pledgeAdmins);
+  const results = await Promise.all(pledgeAdmins);
+  for(let i = 0; i < results.length; i++){
+    results[i].id = i+1;
+  }
+  return results;
 }
 
 

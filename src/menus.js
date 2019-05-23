@@ -12,6 +12,7 @@ const menus = {
           choices: [
             'Projects',
             'Funders',
+            'Pledges',
             new inquirer.Separator(),
             'Tokens',
             new inquirer.Separator(),
@@ -52,6 +53,24 @@ const menus = {
           choices: [
             'List Funders',
             'Create Funder',
+            new inquirer.Separator(),
+            'Back',
+            // new inquirer.Separator(),
+            // 'Exit'
+          ]
+        }
+      ])
+  },
+
+  pledges: async function() {
+    return inquirer
+      .prompt([
+        {
+          type: 'list',
+          name: 'action',
+          message: 'Pledges> ',
+          choices: [
+            'View Pledges',
             new inquirer.Separator(),
             'Back',
             // new inquirer.Separator(),
@@ -150,6 +169,7 @@ const menus = {
       }
     ])
   },
+
   viewProject: async function() {
     return inquirer.prompt([
       {
@@ -243,6 +263,18 @@ const menus = {
         message: 'amount (in ether units)',
         default: 2,
         filter: Number
+      }
+    ])
+  },
+
+  viewDonations: async function() {
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'id',
+        message: 'What is the Funder/Delegate/Project ID?',
+        filter: Number,
+        default: 0
       }
     ])
   },

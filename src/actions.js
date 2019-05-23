@@ -1,6 +1,7 @@
 var inquirer = require('inquirer');
 const Web3 = require("web3");
 const PledgeAdminUtils = require('./pledgeadmin-utils');
+const PledgeUtils = require('./pledge-utils');
 const TrxUtils = require('./trx-utils');
 const Contracts = require("./contracts.js");
 
@@ -88,10 +89,24 @@ class Actions {
     return doAction(text, async () => {
       try {
         const pledgeAdmin = await this.contracts.LiquidPledging.methods.getPledgeAdmin(params.id).call();
+        pledgeAdmin.id = params.id;
         PledgeAdminUtils.printTable([pledgeAdmin].filter(x => x.adminType === PledgeAdminUtils.constants.PROJECT));
       } catch(error){
         console.log("Couldn't obtain the project: ", error.message);
       }
+    });
+  }
+
+  async viewPledges(params) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const pledges = await PledgeUtils.getPledges(this.contracts.LiquidPledging);
+        PledgeUtils.printTable(pledges, web3);
+      } catch(error){
+        console.log(error);
+        console.log("Couldn't obtain the list of pledges: ", error.message);
+      }
+      resolve();
     });
   }
 
@@ -138,9 +153,9 @@ class Actions {
   }
 
   async donate(params) {
-    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
+    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${params.tokenAddress}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
     return doAction(text, async () => {
-      const toSend = this.contracts.LiquidPledging.methods.donate(params.funderId, params.projectId, this.contracts.LiquidPledging.options.address, web3.utils.toWei(params.amount.toString(), "ether"));
+      const toSend = this.contracts.LiquidPledging.methods.donate(params.funderId, params.projectId, params.tokenAddress, web3.utils.toWei(params.amount.toString(), "ether"));
       const receipt = await TrxUtils.executeAndWait(toSend, web3.eth.defaultAccount);
       console.dir("txHash: " + receipt.transactionHash);
     });
