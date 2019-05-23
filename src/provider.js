@@ -3,12 +3,14 @@ const Web3 = require('web3');
 const bip39 = require("bip39");
 const hdkey = require('ethereumjs-wallet/hdkey');
 const ethUtil = require('ethereumjs-util');
+const Transaction = require('ethereumjs-tx');
 
 class Provider {
 
   constructor() {
     this.accounts = []
     this.addresses = []
+    this.nonceCache = {};
     this.web3 = new Web3();
   }
 
@@ -21,13 +23,12 @@ class Provider {
         const numAddresses = accountConfig.numAddresses || 1;
         const wallet_hdpath = accountConfig.hdpath || "m/44'/60'/0'/0/";
 
-        const accounts = [];
         for (let i = addressIndex; i < addressIndex + numAddresses; i++) {
           const wallet = hdwallet.derivePath(wallet_hdpath + i).getWallet();
           //if (returnAddress) {
-            this.accounts.push(wallet.getAddressString());
+          //  this.accounts.push(wallet.getAddressString());
           //} else {
-            //accounts.push(Object.assign(web3.eth.accounts.privateKeyToAccount('0x' + wallet.getPrivateKey().toString('hex')), {hexBalance}));
+            this.accounts.push(this.web3.eth.accounts.privateKeyToAccount('0x' + wallet.getPrivateKey().toString('hex')));
           //}
 
         }
@@ -86,8 +87,6 @@ class Provider {
         const privKey = Buffer.from(key, 'hex');
         tx.sign(privKey);
         payload.params[0] = '0x' + tx.serialize().toString('hex');
-				console.dir("doing send")
-				console.dir(payload)
         return realSend(payload, (error, result) => {
           self.web3.eth.getTransaction(result.result, () => {
             callback(error, result);
@@ -97,9 +96,6 @@ class Provider {
     }, 1);
 
     self.provider.send = function(payload, cb) {
-		  console.dir("send")
-		  console.dir(payload.method)
-		  console.dir(payload)
       if (payload.method === 'eth_accounts') {
         return realSend(payload, function(err, result) {
           if (err) {
@@ -111,8 +107,6 @@ class Provider {
           cb(null, result);
         });
       } else if (payload.method === "eth_sendRawTransaction") {
-        return self.runTransaction.push({payload}, cb);
-      } else if (payload.method === "eth_sendTransaction") {
         return self.runTransaction.push({payload}, cb);
       }
 
