@@ -9,12 +9,19 @@ class Contracts {
 
   loadContracts() {
     console.dir("loading contracts for " + this.chain);
+    const LPVaultJSONConfig = require(`../chains/${this.chain}/contracts/LPVault.json`);
+    const LPVault = new this.web3.eth.Contract(LPVaultJSONConfig.abiDefinition, LPVaultJSONConfig.address);
+
     const LiquidPledgingJSONConfig = require(`../chains/${this.chain}/contracts/LiquidPledging.json`);
     const LiquidPledging = new this.web3.eth.Contract(LiquidPledgingJSONConfig.abiDefinition, LiquidPledgingJSONConfig.address);
-    this.contracts.LiquidPledging = LiquidPledging;
 
     const StandardTokenJSONConfig = require(`../chains/${this.chain}/contracts/StandardToken.json`);
     const StandardToken = new this.web3.eth.Contract(StandardTokenJSONConfig.abiDefinition, StandardTokenJSONConfig.address);
+
+    LiquidPledging.options.jsonInterface.push(LPVault.options.jsonInterface.find(x => x.type === 'event' && x.name ==='AuthorizePayment')); 
+
+    this.contracts.LiquidPledging = LiquidPledging;
+    this.contracts.LPVault = LPVault;
     this.contracts.StandardToken = StandardToken;
   }
 

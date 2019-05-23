@@ -33,7 +33,7 @@ const menus = {
             'List Projects',
             'Create Project',
             'View Project',
-            'Donate to Project',
+            'Fund a Project',
             new inquirer.Separator(),
             'Back',
             // new inquirer.Separator(),
@@ -71,6 +71,7 @@ const menus = {
           message: 'Pledges> ',
           choices: [
             'View Pledges',
+            'Withdraw',
             new inquirer.Separator(),
             'Back',
             // new inquirer.Separator(),
@@ -181,6 +182,26 @@ const menus = {
       }
     ])
   },
+
+  withdraw: async function() {
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'id',
+        message: 'What is the Pledge ID?',
+        filter: Number,
+        default: 0
+      },
+      {
+        type: 'input',
+        name: 'amount',
+        message: 'amount (in ether units)',
+        default: 2,
+        filter: Number
+      }
+    ])
+  },
+
 
   createFunder: async function() {
     return inquirer.prompt([

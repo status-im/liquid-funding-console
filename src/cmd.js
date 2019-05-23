@@ -33,6 +33,11 @@ function mainMenu(actions) {
       if (subAction === 'View Pledges') {
         await actions.viewPledges();
       }
+
+      if (subAction === 'Withdraw') {
+        let params = (await menus.withdraw())
+        await actions.withdraw(params);
+      } 
     } else if (action === 'Funders') {
       subAction = (await menus.funders()).action
 

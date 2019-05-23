@@ -97,6 +97,17 @@ class Actions {
     });
   }
 
+  async withdraw(params) {
+    let text = `await LiquidPledging.methods.withdraw(\"${params.id}\", web3.utils.toWei(\"${params.amount}\", "ether")).send({gas: 2000000})`;
+    return doAction(text, async () => {
+      const toSend = this.contracts.LiquidPledging.methods.withdraw(params.id.toString(), web3.utils.toWei(params.amount.toString(), "ether"));
+      const receipt = await TrxUtils.executeAndWait(toSend, web3.eth.defaultAccount);
+      console.dir("txHash: " + receipt.transactionHash);
+      const paymentId = receipt.events.AuthorizePayment.returnValues.idPayment;
+      console.log("Payment ID: " , paymentId);
+    });
+  }
+
   async viewPledges(params) {
     return new Promise(async (resolve, reject) => {
       try {
