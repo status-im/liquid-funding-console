@@ -7,37 +7,37 @@ const Contracts = require("./contracts.js");
 const web3 = new Web3();
 
 function doAction(actionText, action) {
-	console.dir(actionText)
-	return new Promise(async(resolve, reject) => {
-		inquirer
-			.prompt([
-				{
-					type: 'confirm',
-					name: 'action',
-					message: 'Execute?',
-				}
-			]).then((answer) => {
-				if (answer.action === false) return resolve();
-				console.dir("executing...");
-				try {
-					action()
-				} catch (e) {
-					console.dir("== error")
-					console.dir(e)
-				}
-				resolve()
-			})
-	});
+  console.dir(actionText)
+  return new Promise(async(resolve, reject) => {
+    inquirer
+      .prompt([
+        {
+          type: 'confirm',
+          name: 'action',
+          message: 'Execute?',
+        }
+      ]).then((answer) => {
+        if (answer.action === false) return resolve();
+        console.dir("executing...");
+        try {
+          action()
+        } catch (e) {
+          console.dir("== error")
+          console.dir(e)
+        }
+        resolve()
+      })
+  });
 }
 
 class Actions {
 
   constructor(chain) {
-	  this.chain = chain || "development";
+    this.chain = chain || "development";
   }
 
   connect(url, cb) {
-		console.dir("connecting to: " + url);
+    console.dir("connecting to: " + url);
     web3.setProvider(url);
 
     setTimeout(async () => {
@@ -47,8 +47,8 @@ class Actions {
       web3.eth.defaultAccount = accounts[0]
 
       let contracts = new Contracts(this.chain, web3);
-			contracts.loadContracts();
-			this.contracts = contracts.contracts;
+      contracts.loadContracts();
+      this.contracts = contracts.contracts;
 
       cb();
     }, 1000);
@@ -70,16 +70,16 @@ class Actions {
   }
 
   async listProjects() {
-		return new Promise(async (resolve, reject) => {
-			try {
-				const pledgeAdmins = await PledgeAdminUtils.getPledgeAdmins(this.contracts.LiquidPledging);
-				PledgeAdminUtils.printTable(pledgeAdmins.filter(x => x.adminType === PledgeAdminUtils.constants.PROJECT));
-			} catch(error){
-				console.log(error);
-				console.log("Couldn't obtain the list of projects: ", error.message);
-			}
-			resolve();
-		});
+    return new Promise(async (resolve, reject) => {
+      try {
+        const pledgeAdmins = await PledgeAdminUtils.getPledgeAdmins(this.contracts.LiquidPledging);
+        PledgeAdminUtils.printTable(pledgeAdmins.filter(x => x.adminType === PledgeAdminUtils.constants.PROJECT));
+      } catch(error){
+        console.log(error);
+        console.log("Couldn't obtain the list of projects: ", error.message);
+      }
+      resolve();
+    });
   }
 
   async viewProject(params) {
@@ -94,18 +94,18 @@ class Actions {
     });
   }
 
-	async listFunders() {
-		return new Promise(async (resolve, reject) => {
-			try {
-				const pledgeAdmins = await PledgeAdminUtils.getPledgeAdmins(this.contracts.LiquidPledging);
-				PledgeAdminUtils.printTable(pledgeAdmins.filter(x => x.adminType === PledgeAdminUtils.constants.FUNDER));
-			} catch(error){
-				console.log(error);
-				console.log("Couldn't obtain the list of funders: ", error.message);
-			}
-			resolve();
-		});
-	}
+  async listFunders() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const pledgeAdmins = await PledgeAdminUtils.getPledgeAdmins(this.contracts.LiquidPledging);
+        PledgeAdminUtils.printTable(pledgeAdmins.filter(x => x.adminType === PledgeAdminUtils.constants.FUNDER));
+      } catch(error){
+        console.log(error);
+        console.log("Couldn't obtain the list of funders: ", error.message);
+      }
+      resolve();
+    });
+  }
 
   async addGiver(params) {
     let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({from: \"${web3.eth.defaultAccount}\", gas: 2000000})`
