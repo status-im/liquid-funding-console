@@ -70,7 +70,7 @@ const menus = {
           message: 'Tokens> ',
           choices: [
             'Mint',
-            'Aprove',
+            'Approve',
             // new inquirer.Separator(),
             // 'Back',
             // new inquirer.Separator(),
