@@ -39,15 +39,15 @@ class Actions {
   connect(url, cb) {
     console.dir("connecting to: " + url);
 
-		this.provider = new Provider();
+    this.provider = new Provider();
     const accounts = [{mnemonic: ""}]
-		this.provider.initAccounts(accounts);
-		this.provider.startWeb3Provider("ws", url)
+    this.provider.initAccounts(accounts);
+    this.provider.startWeb3Provider("ws", url)
 
     //web3.setProvider(url);
 
     setTimeout(async () => {
-		  this.web3 = this.provider.web3;
+      this.web3 = this.provider.web3;
 
       let accounts = await this.web3.eth.getAccounts();
       console.dir("== accounts");

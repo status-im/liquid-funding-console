@@ -30,7 +30,6 @@ class Provider {
           //} else {
             this.accounts.push(this.web3.eth.accounts.privateKeyToAccount('0x' + wallet.getPrivateKey().toString('hex')));
           //}
-
         }
       }
     }
