@@ -202,7 +202,6 @@ const menus = {
     ])
   },
 
-
   createFunder: async function() {
     return inquirer.prompt([
       {
@@ -240,7 +239,7 @@ const menus = {
     ])
   },
 
-  mintToken: async function() {
+  mintToken: async function(defaultAccount) {
     console.dir("note: If the transaction fails it likely means this account cannot mint the token (e.g not the owner)");
     return inquirer.prompt([
       {
@@ -256,6 +255,7 @@ const menus = {
         type: 'input',
         name: 'account',
         message: 'What account to mint?',
+        default: defaultAccount,
         filter: String
       },
       {

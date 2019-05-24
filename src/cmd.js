@@ -51,7 +51,7 @@ function mainMenu(actions) {
       subAction = (await menus.tokens()).action
 
       if (subAction === 'Mint') {
-        let params = (await menus.mintToken())
+        let params = (await menus.mintToken(actions.web3Object().eth.defaultAccount))
         await actions.mintToken(params);
       } if (subAction === 'Approve') {
         let params = (await menus.approveToken())
