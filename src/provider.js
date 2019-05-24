@@ -35,7 +35,7 @@ class Provider {
     }
   }
 
-  startWeb3Provider(type, web3Endpoint) {
+  startWeb3Provider(type, web3Endpoint, accountIndex) {
     const self = this;
 
     if (type === 'rpc') {
@@ -69,7 +69,7 @@ class Provider {
     self.addresses = [...new Set(self.addresses)]; // Remove duplicates
 
     if (self.accounts.length) {
-      self.web3.eth.defaultAccount = self.addresses[0];
+      self.web3.eth.defaultAccount = self.addresses[accountIndex || 0];
     }
 
     const realSend = self.provider.send.bind(self.provider);
