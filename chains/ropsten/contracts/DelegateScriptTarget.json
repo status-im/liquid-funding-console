@@ -27,9 +27,9 @@
       "signature": "0xc1c0e9c4"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
-  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/evmscript/executors/DelegateScript.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

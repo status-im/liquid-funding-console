@@ -1,11 +1,11 @@
 {
   "className": "EtherTokenConstant",
   "args": [],
-  "code": "6060604052341561000f57600080fd5b60ad8061001d6000396000f300606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638322fff281146043575b600080fd5b3415604d57600080fd5b6053607c565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000815600a165627a7a72305820be285ee427cc0a62ee77bb105bfaf04eb00820d65f7e123f2b0648ff5ed05f300029",
-  "runtimeBytecode": "606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638322fff281146043575b600080fd5b3415604d57600080fd5b6053607c565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000815600a165627a7a72305820be285ee427cc0a62ee77bb105bfaf04eb00820d65f7e123f2b0648ff5ed05f300029",
+  "code": "6060604052341561000f57600080fd5b60ad8061001d6000396000f300606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638322fff281146043575b600080fd5b3415604d57600080fd5b6053607c565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000815600a165627a7a72305820bc97f57f7d47d6e2a6aad5d2c4e7b0e706021f71fa670d3682092c3687d23f0d0029",
+  "runtimeBytecode": "606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638322fff281146043575b600080fd5b3415604d57600080fd5b6053607c565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000815600a165627a7a72305820bc97f57f7d47d6e2a6aad5d2c4e7b0e706021f71fa670d3682092c3687d23f0d0029",
   "realRuntimeBytecode": "606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638322fff281146043575b600080fd5b3415604d57600080fd5b6053607c565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000815600a165627a7a72305820",
   "linkReferences": {},
-  "swarmHash": "be285ee427cc0a62ee77bb105bfaf04eb00820d65f7e123f2b0648ff5ed05f30",
+  "swarmHash": "bc97f57f7d47d6e2a6aad5d2c4e7b0e706021f71fa670d3682092c3687d23f0d",
   "gasEstimates": {
     "creation": {
       "codeDepositCost": "34600",
@@ -36,9 +36,9 @@
       "signature": "0x8322fff2"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/common/EtherTokenConstant.sol",
-  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/common/EtherTokenConstant.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/common/EtherTokenConstant.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/common/EtherTokenConstant.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/common/EtherTokenConstant.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/common/EtherTokenConstant.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

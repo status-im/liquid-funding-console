@@ -51,9 +51,9 @@
       "signature": "0xe9c211e2"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/contracts/LPVault.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/contracts/LPVault.sol",
   "originalFilename": "contracts/LPVault.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/LPVault.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/LPVault.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

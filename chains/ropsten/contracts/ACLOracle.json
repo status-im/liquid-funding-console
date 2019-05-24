@@ -44,9 +44,9 @@
       "signature": "0x2a151090"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACL.sol",
-  "originalFilename": "node_modules/@aragon/os/contracts/acl/ACL.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/node_modules/@aragon/os/contracts/acl/ACL.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACL.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACL.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/acl/ACL.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

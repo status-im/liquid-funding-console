@@ -88,9 +88,9 @@
       "signature": "0x31c51a00"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/contracts/ILiquidPledgingPlugin.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/contracts/ILiquidPledgingPlugin.sol",
   "originalFilename": "contracts/ILiquidPledgingPlugin.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/ILiquidPledgingPlugin.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/ILiquidPledgingPlugin.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

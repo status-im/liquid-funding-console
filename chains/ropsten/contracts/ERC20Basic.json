@@ -96,9 +96,9 @@
       "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/zeppelin/token/ERC20Basic.sol",
-  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/zeppelin/token/ERC20Basic.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/lib/zeppelin/token/ERC20Basic.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/zeppelin/token/ERC20Basic.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/zeppelin/token/ERC20Basic.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/lib/zeppelin/token/ERC20Basic.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

@@ -191,9 +191,9 @@
       "signature": "0xe944a7cdbc6cbd4bfe4713501567365bd379a9df5fd376422712b066d6e6b522"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/kernel/IKernel.sol",
-  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/kernel/IKernel.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/kernel/IKernel.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/kernel/IKernel.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/kernel/IKernel.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/kernel/IKernel.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

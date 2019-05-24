@@ -75,9 +75,9 @@
       "signature": "0x7e84a4ff"
     }
   ],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/misc/ERCProxy.sol",
-  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/misc/ERCProxy.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/lib/misc/ERCProxy.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/misc/ERCProxy.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/lib/misc/ERCProxy.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/lib/misc/ERCProxy.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

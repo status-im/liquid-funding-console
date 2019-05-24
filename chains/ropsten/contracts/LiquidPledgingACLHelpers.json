@@ -1,11 +1,11 @@
 {
   "className": "LiquidPledgingACLHelpers",
   "args": [],
-  "code": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a723058201b7170a8f3ef3beaea21027f89a9478080b9dd00e50cbdc0f6f75da62302fefa0029",
-  "runtimeBytecode": "6060604052600080fd00a165627a7a723058201b7170a8f3ef3beaea21027f89a9478080b9dd00e50cbdc0f6f75da62302fefa0029",
+  "code": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820bb0f9538e22575c900d17599d2b62e88f5dd6f9a43f8e02ee27871a7f4202d940029",
+  "runtimeBytecode": "6060604052600080fd00a165627a7a72305820bb0f9538e22575c900d17599d2b62e88f5dd6f9a43f8e02ee27871a7f4202d940029",
   "realRuntimeBytecode": "6060604052600080fd00a165627a7a72305820",
   "linkReferences": {},
-  "swarmHash": "1b7170a8f3ef3beaea21027f89a9478080b9dd00e50cbdc0f6f75da62302fefa",
+  "swarmHash": "bb0f9538e22575c900d17599d2b62e88f5dd6f9a43f8e02ee27871a7f4202d94",
   "gasEstimates": {
     "creation": {
       "codeDepositCost": "10600",
@@ -19,9 +19,9 @@
   },
   "functionHashes": {},
   "abiDefinition": [],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/contracts/LiquidPledgingACLHelpers.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/contracts/LiquidPledgingACLHelpers.sol",
   "originalFilename": "contracts/LiquidPledgingACLHelpers.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/LiquidPledgingACLHelpers.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/LiquidPledgingACLHelpers.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

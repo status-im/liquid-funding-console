@@ -1,11 +1,11 @@
 {
   "className": "ACLSyntaxSugar",
   "args": [],
-  "code": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820052d1ee738d6a6f8f1722143128470ee13cef4e47c8722a40843a6d08f00e8b40029",
-  "runtimeBytecode": "6060604052600080fd00a165627a7a72305820052d1ee738d6a6f8f1722143128470ee13cef4e47c8722a40843a6d08f00e8b40029",
+  "code": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582068ad9bb1fdb3f49168a45859a7232e96e9bc91745eef8546aa412b579728176f0029",
+  "runtimeBytecode": "6060604052600080fd00a165627a7a7230582068ad9bb1fdb3f49168a45859a7232e96e9bc91745eef8546aa412b579728176f0029",
   "realRuntimeBytecode": "6060604052600080fd00a165627a7a72305820",
   "linkReferences": {},
-  "swarmHash": "052d1ee738d6a6f8f1722143128470ee13cef4e47c8722a40843a6d08f00e8b4",
+  "swarmHash": "68ad9bb1fdb3f49168a45859a7232e96e9bc91745eef8546aa412b579728176f",
   "gasEstimates": {
     "creation": {
       "codeDepositCost": "10600",
@@ -32,9 +32,9 @@
   },
   "functionHashes": {},
   "abiDefinition": [],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACLSyntaxSugar.sol",
-  "originalFilename": "contracts//Users/iurimatias/Projects/Status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACLSyntaxSugar.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/acl/ACLSyntaxSugar.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACLSyntaxSugar.sol",
+  "originalFilename": "contracts//home/richard/status/liquid-funding-console/.embark/node_modules/@aragon/os/contracts/acl/ACLSyntaxSugar.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/.embark/node_modules/@aragon/os/contracts/acl/ACLSyntaxSugar.sol",
   "gas": "auto",
   "type": "file",
   "deploy": false,

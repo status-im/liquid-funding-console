@@ -1,11 +1,11 @@
 {
   "className": "RecoveryVault",
   "args": [],
-  "code": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820419d1077bffa11c158d2d530e8af6c39714b8367f4947d0edcd33fe4a2107fe00029",
-  "runtimeBytecode": "6060604052600080fd00a165627a7a72305820419d1077bffa11c158d2d530e8af6c39714b8367f4947d0edcd33fe4a2107fe00029",
+  "code": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a723058203e65675d10f9d1937187ce9dcc593ae0dc2e3d78669c471dbca9574775bd7de00029",
+  "runtimeBytecode": "6060604052600080fd00a165627a7a723058203e65675d10f9d1937187ce9dcc593ae0dc2e3d78669c471dbca9574775bd7de00029",
   "realRuntimeBytecode": "6060604052600080fd00a165627a7a72305820",
   "linkReferences": {},
-  "swarmHash": "419d1077bffa11c158d2d530e8af6c39714b8367f4947d0edcd33fe4a2107fe0",
+  "swarmHash": "3e65675d10f9d1937187ce9dcc593ae0dc2e3d78669c471dbca9574775bd7de0",
   "gasEstimates": {
     "creation": {
       "codeDepositCost": "10600",
@@ -15,16 +15,12 @@
   },
   "functionHashes": {},
   "abiDefinition": [],
-  "filename": "/Users/iurimatias/Projects/Status/liquid-funding-console/.embark/contracts/test/RecoveryVault.sol",
+  "filename": "/home/richard/status/liquid-funding-console/.embark/contracts/test/RecoveryVault.sol",
   "originalFilename": "contracts/test/RecoveryVault.sol",
-  "path": "/Users/iurimatias/Projects/Status/liquid-funding-console/contracts/test/RecoveryVault.sol",
+  "path": "/home/richard/status/liquid-funding-console/contracts/test/RecoveryVault.sol",
   "gas": "auto",
   "type": "file",
-  "deploy": true,
+  "deploy": false,
   "_gasLimit": 6000000,
-  "error": false,
-  "deploymentAccount": "0xeb11Dc64B00B769982FA70F6280210Fa457e7753",
-  "realArgs": [],
-  "address": "0xAE4670F532F43b3bB72D3aBe5375F0Cc608c94F8",
-  "deployedAddress": "0xAE4670F532F43b3bB72D3aBe5375F0Cc608c94F8"
+  "error": false
 }
