@@ -19,7 +19,7 @@ const actions = new Actions(program.chain || "development", accounts || []);
 
 actions.connect({
   url: (program.url || "ws://localhost:8556"),
-	accountIndex: (program.index || 0)
+  accountIndex: (program.index || 0)
 }, async () => {
   cmd(actions)
 });
