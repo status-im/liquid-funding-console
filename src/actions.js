@@ -129,7 +129,7 @@ class Actions {
       console.log("Payment ID: " , paymentId);
 
       toSend = this.contracts.LPVault.methods.confirmPayment(paymentId);
-      receipt = await TrxUtils.executeAndWait(toSend, web3.eth.defaultAccount);
+      receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount);
       console.dir("txHash: " + receipt.transactionHash);
     });
   }
