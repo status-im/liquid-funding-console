@@ -1,7 +1,8 @@
 {
   "accounts": [
     {
-      "mnemonic": "add mnemonic here"
+      "mnemonic": "add mnemonic here",
+      "numAddresses": 1
     }
   ]
 }

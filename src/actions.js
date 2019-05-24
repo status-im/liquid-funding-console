@@ -47,9 +47,9 @@ class Actions {
       this.provider = new Provider();
       this.provider.initAccounts(this.accounts);
       if (url.indexOf("https") >= 0) {
-        this.provider.startWeb3Provider("rpc", url)
+        this.provider.startWeb3Provider("rpc", url, (options.accountIndex || 0))
       } else {
-        this.provider.startWeb3Provider("ws", url)
+        this.provider.startWeb3Provider("ws", url, (options.accountIndex || 0))
       }
     } else {
       this.web3 = new Web3();
@@ -64,7 +64,17 @@ class Actions {
       let accounts = await this.web3.eth.getAccounts();
       console.dir("== accounts");
       console.dir(accounts);
-      this.web3.eth.defaultAccount = accounts[0]
+      this.web3.eth.defaultAccount = accounts[(options.accountIndex || 0)]
+      if (this.web3.eth.defaultAccount) {
+        console.dir("using account: " + this.web3.eth.defaultAccount);
+      } else {
+        console.log("===================================");
+        console.log("===================================");
+        console.error("no account found at index " + (options.accountIndex || 0));
+        console.log("===================================");
+        console.log("===================================");
+        process.exit();
+      }
 
       let contracts = new Contracts(this.chain, this.web3);
       contracts.loadContracts();
