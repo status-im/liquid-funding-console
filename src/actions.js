@@ -38,6 +38,10 @@ class Actions {
     this.accounts = accounts || [];
   }
 
+  getWeb3() {
+    return this.web3;
+  }
+
   connect(options, cb) {
     const url = options.url;
 
@@ -80,6 +84,9 @@ class Actions {
       contracts.loadContracts();
       this.contracts = contracts.contracts;
 
+      this.execute = TrxUtils.executeAndWait(this.web3);
+
+
       cb();
     }, 1000);
   }
@@ -89,10 +96,10 @@ class Actions {
   }
 
   async addProject(params) {
-    let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({gas: 2000000})`
+    let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
       const toSend = this.contracts.LiquidPledging.methods.addProject(params.name, params.url, params.account, params.parentProject, params.commitTime, params.plugin);
-      const receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
       const projectId = receipt.events.ProjectAdded.returnValues.idProject;
       console.log("Project ID: " , projectId);
@@ -126,20 +133,20 @@ class Actions {
   }
 
   async withdraw(params) {
-    let text = `await LiquidPledging.methods.withdraw(\"${params.id}\", web3.utils.toWei(\"${params.amount}\", "ether")).send({gas: 2000000});\nawait LPVault.methods.confirmPayment(paymentId).send({gas: 2000000})`;
+    let text = `await LiquidPledging.methods.withdraw(\"${params.id}\", web3.utils.toWei(\"${params.amount}\", "ether")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")});\nawait LPVault.methods.confirmPayment(paymentId).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`;
     return doAction(text, async () => {
 
       let toSend, receipt;
 
       toSend = this.contracts.LiquidPledging.methods.withdraw(params.id.toString(), this.web3.utils.toWei(params.amount.toString(), "ether"));
-      receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
 
       console.dir("txHash: " + receipt.transactionHash);
       const paymentId = receipt.events.AuthorizePayment.returnValues.idPayment;
       console.log("Payment ID: " , paymentId);
 
       toSend = this.contracts.LPVault.methods.confirmPayment(paymentId);
-      receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
     });
   }
@@ -171,10 +178,10 @@ class Actions {
   }
 
   async addGiver(params) {
-    let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({gas: 2000000})`
+    let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
       const toSend = this.contracts.LiquidPledging.methods.addGiver(params.name, params.url, params.commitTime, params.plugin);
-      const receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
       const funderId = receipt.events.GiverAdded.returnValues.idGiver;
       console.log("Funder ID: " , funderId);
@@ -182,28 +189,28 @@ class Actions {
   }
 
   async mintToken(params) {
-    let text = `await StandardToken.methods.mint(\"${params.account}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
+    let text = `await StandardToken.methods.mint(\"${params.account}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
       const toSend = this.contracts.StandardToken.methods.mint(params.account, this.web3.utils.toWei(params.amount.toString(), "ether"));
-      const receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
     });
   }
 
   async approveToken(params) {
-    let text = `await StandardToken.methods.approve(\"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000})`
+    let text = `await StandardToken.methods.approve(\"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
       const toSend = this.contracts.StandardToken.methods.approve(this.contracts.LiquidPledging.options.address, this.web3.utils.toWei(params.amount.toString(), "ether"));
-      const receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
     });
   }
 
   async donate(params) {
-    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${params.tokenAddress}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000});`
+    let text = `await LiquidPledging.methods.donate(${params.funderId}, ${params.projectId}, \"${params.tokenAddress}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")});`
     return doAction(text, async () => {
       const toSend = this.contracts.LiquidPledging.methods.donate(params.funderId, params.projectId, params.tokenAddress, this.web3.utils.toWei(params.amount.toString(), "ether"));
-      const receipt = await TrxUtils.executeAndWait(toSend, this.web3.eth.defaultAccount, this.chain);
+      const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
     });
   }
