@@ -241,6 +241,7 @@ const menus = {
   },
 
   mintToken: async function() {
+    console.dir("note: If the transaction fails it likely means this account cannot mint the token (e.g not the owner)");
     return inquirer.prompt([
       {
         type: 'input',

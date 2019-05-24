@@ -1,6 +1,6 @@
 const Spinner = require('cli-spinner').Spinner;
 
-const executeAndWait = async (toSend, account) => {
+const executeAndWait = async (toSend, account, chain) => {
   return new Promise(async (resolve, reject) => {
     const spinner = new Spinner('%s');
     spinner.setSpinnerString(18);
@@ -8,7 +8,19 @@ const executeAndWait = async (toSend, account) => {
 
     try {
       const estimatedGas = await toSend.estimateGas({from: account});
-      const receipt = await toSend.send({from: account, gas: estimatedGas + 10000});
+      const tx = toSend.send({from: account, gas: estimatedGas + 10000});
+
+      if (chain && chain !== "development") {
+        tx.on('transactionHash', (transactionHash) => {
+           let network = "";
+           if (chain !== "mainnet") {
+             network = chain + "."
+           }
+          console.dir("https://" + network + "etherscan.io/tx/" + transactionHash);
+        })
+      }
+
+      const receipt = await tx;
 
       spinner.stop(true);
       return resolve(receipt);
