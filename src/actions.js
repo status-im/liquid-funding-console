@@ -46,7 +46,11 @@ class Actions {
     if (this.accounts.length > 0) {
       this.provider = new Provider();
       this.provider.initAccounts(this.accounts);
-      this.provider.startWeb3Provider("ws", url)
+      if (url.indexOf("https") >= 0) {
+        this.provider.startWeb3Provider("rpc", url)
+      } else {
+        this.provider.startWeb3Provider("ws", url)
+      }
     } else {
       this.web3 = new Web3();
       this.web3.setProvider(url);
