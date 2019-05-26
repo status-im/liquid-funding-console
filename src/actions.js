@@ -96,6 +96,7 @@ class Actions {
   }
 
   async addProject(params) {
+    params.commitTime = Math.floor(Date.now() / 1000) + params.commitTime;
     let text = `await LiquidPledging.methods.addProject(\"${params.name}\", \"${params.url}\", \"${params.account}\", ${params.parentProject}, ${params.commitTime}, \"${params.plugin}\").send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
       const toSend = this.contracts.LiquidPledging.methods.addProject(params.name, params.url, params.account, params.parentProject, params.commitTime, params.plugin);
@@ -178,6 +179,7 @@ class Actions {
   }
 
   async addGiver(params) {
+    params.commitTime = Math.floor(Date.now() / 1000) + params.commitTime;
     let text = `await LiquidPledging.methods.addGiver(\"${params.name}\", \"${params.url}\", ${params.commitTime}, \"${params.plugin}\").send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
       const toSend = this.contracts.LiquidPledging.methods.addGiver(params.name, params.url, params.commitTime, params.plugin);

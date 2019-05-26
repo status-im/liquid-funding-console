@@ -155,7 +155,7 @@ const menus = {
       {
         type: 'input',
         name: 'commitTime',
-        message: 'Time in seconds after which the project owner can access funds',
+        message: 'Seconds from now which any project funded by this project can access funds',
         default: 86400,
         filter: Number
       },
@@ -238,7 +238,7 @@ const menus = {
       {
         type: 'input',
         name: 'commitTime',
-        message: 'commit time',
+        message: 'Seconds from now which the project owner can access any funds pledged by this funder',
         default: 86400,
         filter: Number
       },
