@@ -2,6 +2,12 @@
 
 Command line utility to use Liquid Funding contracts.
 
+![screenshot_1](https://github.com/status-im/liquid-funding-console/raw/master/screenshots/screenshot_1.png)
+
+![screenshot_2](https://github.com/status-im/liquid-funding-console/raw/master/screenshots/screenshot_2.png)
+
+![screenshot_3](https://github.com/status-im/liquid-funding-console/raw/master/screenshots/screenshot_3.png)
+
 # Usage
 
 ```
