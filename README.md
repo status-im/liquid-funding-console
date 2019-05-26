@@ -1,5 +1,7 @@
 # Liquid Funding Console
 
+Command line utility to use Liquid Funding contracts.
+
 # Usage
 
 ```
