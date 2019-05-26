@@ -38,10 +38,6 @@ class Actions {
     this.accounts = accounts || [];
   }
 
-  getWeb3() {
-    return this.web3;
-  }
-
   connect(options, cb) {
     const url = options.url;
 
@@ -193,6 +189,7 @@ class Actions {
   async mintToken(params) {
     let text = `await StandardToken.methods.mint(\"${params.account}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
+      this.contracts.StandardToken.options.address = params.tokenAddress;
       const toSend = this.contracts.StandardToken.methods.mint(params.account, this.web3.utils.toWei(params.amount.toString(), "ether"));
       const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);
@@ -200,8 +197,9 @@ class Actions {
   }
 
   async approveToken(params) {
-    let text = `await StandardToken.methods.approve(\"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
+    let text = `await ERC20.methods.approve(\"${this.contracts.LiquidPledging.options.address}\", web3.utils.toWei(\"${params.amount}\", \"ether\")).send({gas: 2000000, gasPrice: web3.utils.toWei(${params.gasPrice}, "gwei")})`
     return doAction(text, async () => {
+      this.contracts.StandardToken.options.address = params.tokenAddress;
       const toSend = this.contracts.StandardToken.methods.approve(this.contracts.LiquidPledging.options.address, this.web3.utils.toWei(params.amount.toString(), "ether"));
       const receipt = await this.execute(toSend, this.web3.eth.defaultAccount, this.chain, params.gasPrice);
       console.dir("txHash: " + receipt.transactionHash);

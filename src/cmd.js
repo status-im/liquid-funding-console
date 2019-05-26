@@ -1,12 +1,14 @@
 var inquirer = require('inquirer');
 const menus = require('./menus.js');
 const {getGasPrice} = require('./trx-utils');
+const tokenSummary = require("../chains/tokens");
 
 function mainMenu(actions) {
   return new Promise(async (resolve, reject) => {
     let action = (await menus.main()).action
     let subAction;
-    let gasPrice = await getGasPrice(actions.getWeb3());
+    let gasPrice = await getGasPrice(actions.web3Object());
+    let tokens = tokenSummary[actions.chain];
 
     if (action === 'Projects') {
       subAction = (await menus.projects()).action
@@ -26,7 +28,7 @@ function mainMenu(actions) {
       }
 
       if (subAction === 'Fund a Project') {
-        let params = (await menus.donate(gasPrice)())
+        let params = (await menus.donate(gasPrice, tokens)())
         await actions.donate(params);
       }
     } else if(action === 'Pledges') {
@@ -53,10 +55,10 @@ function mainMenu(actions) {
       subAction = (await menus.tokens()).action
 
       if (subAction === 'Mint') {
-        let params = (await menus.mintToken(gasPrice)(actions.web3Object().eth.defaultAccount))
+        let params = (await menus.mintToken(gasPrice, tokens)(actions.web3Object().eth.defaultAccount))
         await actions.mintToken(params);
       } if (subAction === 'Approve') {
-        let params = (await menus.approveToken(gasPrice)())
+        let params = (await menus.approveToken(gasPrice, tokens)())
         await actions.approveToken(params);
       }
     } else if (action === 'Exit') {
