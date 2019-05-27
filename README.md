@@ -57,3 +57,7 @@ type `devtxs on`
 
 `node src/index.js`
 
+# Notes
+
+* The Liquid Funding contract address needs to be approved to withdraw from a token in order to do pledges with that token. This can be done in `Tokens -> Approve`
+* `Mint` will work on ropsten, development etc.. if the deployed token supports it.
